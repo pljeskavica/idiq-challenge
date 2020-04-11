@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "scrape": "node scripts/scraper.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tom Hogue <tom.hogue.jr@gmail.com>",
@@ -12,6 +13,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "cli-progress": "^3.7.0",
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "express": "^4.17.1"
   }
 }
