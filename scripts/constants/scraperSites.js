@@ -55,4 +55,20 @@ module.exports = [
     name: 'rails-way',
     url: 'https://leanpub.com/tr5w',
   },
-]
+  {
+    name: 'facebook',
+    url: 'https://facebook.com/',
+  },
+  {
+    name: 'yahoo',
+    url: 'https://yahoo.com/',
+  },
+  {
+    name: 'irs',
+    url: 'https://www.irs.gov/',
+  },
+  {
+    name: 'forbes',
+    url: 'https://www.forbes.com/',
+  },
+];
