@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+
+<html lang="en">
+<!--<![endif]-->
+
+  <head>
+  <meta name="generator" content=
+  "HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.12), see www.w3.org">
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta charset="utf-8">
+
+  <title>Eloquent Ruby | Companion site to Russ Olsen's book</title>
+  <meta name="description" content="">
+  <meta name="author" content=""><!-- Mobile Specific Metas
+  ================================================== -->
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1, maximum-scale=1"><!-- CSS
+  ================================================== -->
+
+    <link rel="stylesheet" href="/assets/stylesheets/syntax.css" type="text/css">
+    <link rel="stylesheet" href="/assets/stylesheets/main.css" type="text/css">
+
+    <link rel="stylesheet" href="/assets/stylesheets/base.css" type=
+  "text/css">
+    <link rel="stylesheet" href="/assets/stylesheets/skeleton.css" type=
+  "text/css">
+    <link rel="stylesheet" href="/assets/stylesheets/layout.css" type=
+  "text/css"><!--[if lt IE 9]>
+                <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+  <!-- Favicons
+        ================================================== -->
+  <link rel="shortcut icon" href="assets/images/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href=
+  "images/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href=
+  "assets/images/apple-touch-icon-114x114.png">
+
+</head>
+
+  <body class="bordered">
+    <div class="container">
+      
+<div class="sixteen columns masthead">
+ <a href="/" class="logo"><img src="/assets/images/logo.png"/></a>
+</div>
+<div class="sixteen columns menu">
+  <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/pages/archives">Blog</a></li>
+      <li><a href="https://github.com/russolsen/eloquent_ruby_code" target="_other">Code</a></li>
+      <li><a href="/pages/errata">Errata</a></li>
+      <li><a href="/pages/about">About</a></li>
+  </ul>
+</div>
+
+
+
+
+      <div class="twelve columns main" >
+        
+<div class="article">
+    <div class="header">
+      <h3><a href="/blog/2011/04/12/unit-testing-for-the-disinclined/">Unit Testing for the Disinclined</a></h3>
+      <div class="aside">Posted on Apr 12th, 2011 In <a href="/categories/oops">oops</a>, <a href="/categories/writing">writing</a></div>
+    </div>
+
+    <div class="text">
+      <p>I work with many engineers used to developing software with a traditional waterfall-ish methodology. Mostly it’s a good experience, but it does mean that I spend a lot of my time talking, demonstrating, pleading, begging, threatening, jumping up and down and holding my breath, all in an effort to get folks to write unit tests. Mostly the argument against writing tests is that it is a lot of extra work that is really pretty optional. “I’ll write the tests at the end,” they sometimes say to shut me up, “<em>If </em>I have time.” After all, we spend all day everyday looking at the code, tweaking it, debugging it and running it. Surely that should be enough.&lt;/p&gt;</p>
+<p>Which brings me to page 328. Of Eloquent Ruby of course. Page 328 is like just about every other page of my latest book, full of breathless prose and numerous coding examples. Writing code for a book is a lot like writing production code, but with a few special twists. It&#8217;s like writing production code in that the book code has to work: Hell hath no fury like a reader who has just tried to run an example and found that you missed a comma. Book code is different from regular code in that it doesn&#8217;t go into production, it goes onto the page. For Eloquent Ruby, I attacked the twin problems of making sure the code worked and making sure it landed on the page by writing a couple of Ruby scripts. One script runs all of the RSpecs associated with the code to verify that it does indeed work. The other script extracts all of the interesting bits of code (bits that are marked off by special comments) and inserts them into the right places in the manuscript.</p>
+<p>Except that I didn&#8217;t do that everywhere. There were a few places where the sheer difficulty of writing a working program or simple laziness drove me to write the code directly into the book without the benefits of a spec. There were only a handful of these and during the review phase of writing I made a point of taking a careful look at each one: Gotta check those untested code samples, just to make sure they work. Which brings me back to page 328. Right there in the middle of the page is one of the handful of code examples that I didn&#8217;t run through RSpec:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">Automobile</span> &gt; <span style="color:#036;font-weight:bold">ActiveRecord</span>::<span style="color:#036;font-weight:bold">Base</span>
+  has_one <span style="color:#A60">:manufacturer</span>
+<span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+</div>
+
+<p>Do you see it?</p>
+<p>That &gt; should be a &lt;. Putting that &gt; in a class definition is one of my very favorite Ruby syntax mistakes to make. For what it&#8217;s worth, my subconscious is convinced that since there is likely to be more stuff in the subclass than in the superclass, it only makes sense that subclass &gt; superclass.</p>
+<p>Whatever the dark psychological forces behind it, the fact is that I got that code example wrong. Looking at this statistically, the broken example above is one of  five in the book that is spec-less. That&#8217;s a 20% error rate. Now I don&#8217;t know what the real error rate is in the other 600-odd examples in the book &#8211; after all the book hasn&#8217;t been out all that long and there probably are some lurking bugs. But if there was anywhere near 120 coding mistakes in the book (20% of 600) I think I would have heard about it by now. My guess is that that the error rate for the Spec&#8217;ed examples is at least an order of magnitude less than for the untested code.</p>
+<p>Now step back and think about this with me. I got the Automobile example wrong even though it contained a glaring mistake. I got it wrong even though the mistake was one that I know I make. I got it wrong  even though I took some extra time to eye-ball it to make sure it was right. I got it wrong while I got most, if not all, of the other 600 examples, the ones with RSpecs, right.  If that doesn&#8217;t convince you of the utility of unit testing, well, I&#8217;m just going to hold my breath till I turn blue.</p>
+
+    </div>
+
+    <hr />
+  </div>
+
+<div class="article">
+    <div class="header">
+      <h3><a href="/blog/2011/03/11/the-darned-title/">The Darned Title</a></h3>
+      <div class="aside">Posted on Mar 11th, 2011 In <a href="/categories/writing">writing</a></div>
+    </div>
+
+    <div class="text">
+      <p>The last two words written for <strong>Eloquent Ruby</strong> were the ones that went into the title. The funny thing is that the idea behind the book never wavered: Write a book that would explain how Ruby is really used, with an emphasis on topics that ‘we all know’.</p>
+
+<p>So the theme of the book was easy, what was hard was coming up with a title. Initially it was going to be <strong>Effective Ruby</strong>, a homage to one of the most influential Java books ever. Unfortunately, there is a fine line between homage and copyright infringement and the AW lawyers were, well, nervous.</p>
+
+<p>So, then we turned to <strong>Elegant Ruby</strong>. I never liked that title much, but it was what we wrote on the contract just to get the ball rolling. For a while I tried to convince myself that <strong>Fluent In Ruby</strong> or maybe <strong>Fluent Ruby</strong> would work, but the fact is that I hated both.</p>
+
+<p>Then I thought I found the solution: <strong>Elements of Ruby Style</strong>. “You’re kidding, right?” said the lawyers. By this time we were in the midst of copy editing, the small matter of actually writing a 400 page book a quick stroll in the library compared to the serious task of picking a title.</p>
+
+<p>Fine I said, <strong>Elegant Ruby</strong> it is. The final touches were going into the MS when I heard that no, because of some other stuff that was going on, Elegant wouldn’t work either. At this point my wife Karen, a calm and wise woman, said these calm and wise words: “We do own a thesaurus, you know.”</p>
+
+<p>And so we did, and right there near <em>Elegant</em> was <em>Eloquent</em>. And <strong>Eloquent Ruby</strong> it was. Then a few days after the book was officially published, I heard from Marijn Haverbeke, author of <a href="http://eloquentjavascript.net/">Eloquent Javascript</a>. Sigh. I had no idea there was another <em>eloquent</em> programming book out there.</p>
+
+<p>But it all works out. While the saga of the title seemed to stretch on for half my life, the folks at AW have had to put up with a lot more from me than vise versa. And Marijn turned out to be one of those wonderful people that you meet in the twists and turns of life. So it’s all good.</p>
+
+<p>Russ</p>
+
+    </div>
+
+    <hr />
+  </div>
+
+<div class="article">
+    <div class="header">
+      <h3><a href="/blog/2011/03/07/good-code-and-good-jokes/">Good Code And Good Jokes</a></h3>
+      <div class="aside">Posted on Mar 7th, 2011 In <a href="/categories/oops">oops</a></div>
+    </div>
+
+    <div class="text">
+      <p>On page 8 of the book, after warning against commenting too zealously, I said:</p>
+
+<blockquote>
+  <p>Remember, good code is like a good joke: It needs no explanation.</p>
+</blockquote>
+
+<p>Except that I didn’t actually say that, at least not originally. That line is a bit of old school programming wisdom that I’ve heard many times over the years. I thought I was repeating a fairly obvious old chestnut. I certainly should have said so in the book. So, if you are the wise old coder who said this originally, my apologies.</p>
+
+<p>Russ</p>
+
+    </div>
+
+    <hr />
+  </div>
+
+<div class="article">
+    <div class="header">
+      <h3><a href="/blog/2011/03/01/are-you-a-rule-breaker/">Are You a Rule Breaker?</a></h3>
+      <div class="aside">Posted on Mar 1st, 2011 In <a href="/categories/rules">rules</a></div>
+    </div>
+
+    <div class="text">
+      <p>Eloquent Ruby ends with a plea not to take all of the rules too seriously. I’ve always thought that the best best practice is to think for yourself.</p>
+
+<p>So when should we break the Ruby rules? Leave a comment and let me know what you think.</p>
+
+<p>Russ</p>
+
+    </div>
+
+    <hr />
+  </div>
+
+<p><a href="/pages/archives">All articles…</a></p>
+
+
+      </div>
+      <div class="three columns offset-by-one sidebar">
+  <div class="section">
+    <h4>Drop Me a Line</h4>
+    <div class="item">
+
+      <a href="http://russolsen.com" title="Russ Olsen">
+        <img src="/assets/images/russ_headshot.jpg" class="headshot" alt="Russ headshot">
+      </a>
+
+      <a href="mailto:russ@russolsen.com">russ@russolsen.com</a> <a href="http://twitter.com/russolsen">@russolsen</a>
+    </div>
+  </div>
+  <div class="section">
+
+    <h4>Buy The Books</h4>
+
+    <div class="item">
+      <a href="http://www.amazon.com/gp/product/0321584104/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0321584104&amp;linkCode=as2&amp;tag=eloqruby-20">
+        <img src="/assets/images/er.jpeg" alt="Eloquent Ruby cover" class="book-cover">
+      </a>
+    </div>
+
+    <div class="item">
+      <a href="http://www.amazon.com/gp/product/0321490452/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0321490452&amp;linkCode=as2&amp;tag=eloqruby-20">
+        <img src="/assets/images/dpir.jpeg" alt="Design Patterns in Ruby cover" class="book-cover">
+      </a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h4>Recent Posts</h4>
+
+
+    <div class="item">
+      <ul id="recent_posts">
+        
+          <li><a href="/blog/2011/04/12/unit-testing-for-the-disinclined/">Unit Testing for the Disinclined</a></li>
+        
+          <li><a href="/blog/2011/03/11/the-darned-title/">The Darned Title</a></li>
+        
+          <li><a href="/blog/2011/03/07/good-code-and-good-jokes/">Good Code And Good Jokes</a></li>
+        
+          <li><a href="/blog/2011/03/01/are-you-a-rule-breaker/">Are You a Rule Breaker?</a></li>
+        
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h4>Categories</h4>
+    <div class="item">
+      <ul>
+<li><a href="/categories/oops">oops</a></li>
+<li><a href="/categories/rules">rules</a></li>
+<li><a href="/categories/writing">writing</a></li>
+
+</ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h4>Meta</h4>
+    <div class="item">
+      <ul>
+        <li>
+          <a href="/atom.xml" rel="subscribe-rss" title="Subscribe via RSS">Subscribe via RSS</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+      <div class="sixteen columns footer">
+  <span class="twitter">©2011-2015 Russ Olsen </span>
+  <span class="powered">Powered by nanoc</span>
+</div>
+
+    </div>
+  </body>
+</html>
+<body>

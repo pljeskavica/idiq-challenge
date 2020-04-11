@@ -1,0 +1,16 @@
+{
+  "name": "idiq-challenge",
+  "version": "1.0.0",
+  "description": "IDIQ Coding Challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tom Hogue <tom.hogue.jr@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cli-progress": "^3.7.0",
+    "colors": "^1.4.0"
+  }
+}
