@@ -30,9 +30,13 @@ const Table = ({ classes }) => {
   }, [dispatch]);
 
   return (
-    <TableContainer classes={{ root: classes.root }} component={Paper}>
+    <TableContainer
+      data-test-id={'Table-root'}
+      classes={{ root: classes.root }}
+      component={Paper}
+    >
       <MuiTable className={classes.table} aria-label="simple table">
-        <TableHead>
+        <TableHead data-test-id={'Table-head'}>
           <TableRow>
             <TableCell>Name</TableCell>
             <TableCell align="left">Url</TableCell>

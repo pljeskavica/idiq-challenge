@@ -29,15 +29,27 @@ const TableRow = ({ url, name }) => {
     });
 
   return (
-    <MuiTableRow key={url}>
-      <TableCell component="th" scope="row">
+    <MuiTableRow data-test-id={`TableRow-root-${name}`} key={url}>
+      <TableCell
+        data-test-id={`TableRow-name-${name}`}
+        component="th"
+        scope="row"
+      >
         {name}
       </TableCell>
-      <TableCell component="th" scope="row" align="left">
+      <TableCell
+        data-test-id={`TableRow-url-${name}`}
+        component="th"
+        scope="row"
+        align="left"
+      >
         {url}
       </TableCell>
       <TableCell align="right">
-        <IconButton onClick={onClick({ name, url })}>
+        <IconButton
+          data-test-id={`TableRow-downloadButton-${name}`}
+          onClick={onClick({ name, url })}
+        >
           <CloudDownloadIcon />
         </IconButton>
       </TableCell>

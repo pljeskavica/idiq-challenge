@@ -15,3 +15,5 @@ app.get('/sites/:id', getHTML);
 app.listen(port, () =>
   console.log(`Server is running at http://localhost:${port}`),
 );
+
+module.exports = app;
