@@ -10,6 +10,9 @@
     "build:client": "cd client && yarn build",
     "build:client:ci": "cd client && yarn && yarn build"
   },
+  "engines": {
+    "node": "13.11.0"
+  },
   "author": "Tom Hogue <tom.hogue.jr@gmail.com>",
   "license": "ISC",
   "dependencies": {
