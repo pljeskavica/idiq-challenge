@@ -76,6 +76,7 @@ const SnackbarController = ({ classes }) => {
 
   return (
     <Snackbar
+      data-test-id={`Snackbar-root-${variant}`}
       open={snackbarOpen}
       onExited={onExited}
       onClose={onClose}
@@ -101,6 +102,7 @@ const SnackbarController = ({ classes }) => {
           aria-label="close"
           className={classes.closeIcon}
           onClick={close}
+          data-test-id={`Snackbar-closeButton`}
         >
           <CloseIcon className={classes.icon} />
         </IconButton>,

@@ -9,6 +9,10 @@ const styles = theme => ({
   },
 });
 
-const Footer = ({ classes }) => <div className={classes.root}>Footer</div>;
+const Footer = ({ classes }) => (
+  <div data-test-id={'Footer-root'} className={classes.root}>
+    Footer
+  </div>
+);
 
 export default withStyles(styles)(Footer);

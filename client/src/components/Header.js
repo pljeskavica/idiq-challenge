@@ -15,7 +15,7 @@ const styles = theme => ({
 });
 
 const Header = ({ classes }) => (
-  <AppBar classes={{ root: classes.root }}>
+  <AppBar data-test-id={'Header-root'} classes={{ root: classes.root }}>
     <Typography variant="h6" className={classes.title}>
       Site Scraper
     </Typography>
