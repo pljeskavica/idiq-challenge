@@ -22,7 +22,7 @@ const siteListRequestFailure = err => ({
 export const getSiteList = () => dispatch => {
   dispatch(siteListRequest());
   return request
-    .get(`${getServerURL()}/sites`)
+    .get(`${getServerUrl()}/sites`)
     .then(res => {
       dispatch(siteListRequestSuccess(res.data));
     })

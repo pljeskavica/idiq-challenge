@@ -1,6 +1,6 @@
 import request from 'axios';
 import * as SnackbarActions from './snackbars';
-import getServerURL from 'constants/getServerUrl';
+import getServerUrl from 'constants/getServerUrl';
 
 import {
   siteHTMLRequestMessage,
@@ -31,7 +31,7 @@ const siteHTMLRequestFailure = err => ({
 export const getSiteHTML = ({ url, name }) => dispatch => {
   dispatch(SnackbarActions.pushSnackbar(requestSiteHTMLSnackbar));
   dispatch(siteHTMLRequest());
-  const requestURL = encodeURI(`${getServerURL()}/sites/${name}`);
+  const requestURL = encodeURI(`${getServerUrl()}/sites/${name}`);
   return request
     .get(requestURL)
     .then(res => {
