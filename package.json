@@ -6,7 +6,8 @@
   "scripts": {
     "scrape": "node scripts/scraper.js",
     "start": "concurrently \"node index.js\" \"cd client && yarn start\"",
-    "test": "jest"
+    "test": "jest",
+    "build:client": "cd client && yarn build"
   },
   "author": "Tom Hogue <tom.hogue.jr@gmail.com>",
   "license": "ISC",
