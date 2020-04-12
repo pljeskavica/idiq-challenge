@@ -1,4 +1,5 @@
 import request from 'axios';
+import getServerUrl from 'constants/getServerUrl';
 
 export const SITE_LIST_REQUEST = 'SITE_LIST_REQUEST';
 export const SITE_LIST_SUCCESS = 'SITE_LIST_SUCCESS';
@@ -21,7 +22,7 @@ const siteListRequestFailure = err => ({
 export const getSiteList = () => dispatch => {
   dispatch(siteListRequest());
   return request
-    .get('http://localhost:3001/sites')
+    .get(`${getServerURL()}/sites`)
     .then(res => {
       dispatch(siteListRequestSuccess(res.data));
     })
